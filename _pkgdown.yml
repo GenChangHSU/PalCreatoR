@@ -1,0 +1,53 @@
+url: https://genchanghsu.github.io/PalCreatoR/
+
+title: PalCreatoR
+
+destination: docs
+
+template:
+  params:
+    bootswatch: spacelab
+    docsearch:
+      api_key: API_KEY
+      index_name: INDEX_NAME
+
+development:
+  mode: auto
+
+authors:
+  Gen-Chang Hsu:
+    href: https://github.com/GenChangHSU
+  Jia-Ang Ou:
+    href: https://github.com/jiaangou
+
+navbar:
+  structure:
+    left: [home, reference, articles, news]
+    right: [github, twitter]
+  components:
+    reference:
+       text: Function
+       href: reference/index.html
+    articles:
+       text: Quick Demonstration
+       href: articles/Quick_Demonstration.html
+    news:
+       text: News
+       href: news/index.html
+    twitter:
+       icon: "fab fa-twitter fa-lg"
+       href: https://twitter.com/GenChangHSU
+
+reference:
+  - title: "Function"
+    contents:
+     - create_pal
+
+articles:
+  - title: Quick Demonstration
+    contents:
+     - Quick_Demonstration
+
+news:
+ one_page: true
+

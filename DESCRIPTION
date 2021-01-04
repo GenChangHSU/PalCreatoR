@@ -1,0 +1,31 @@
+Package: PalCreatoR
+Type: Package
+Title: Create your own R palette using colors extracted from your favorite image. 
+Version: 0.1.0
+Authors@R: c(person("Gen-Chang", "Hsu", email = "ymstrknp@gmail.com",
+                    role = c("aut", "cre"),
+                    comment = c(ORCID = "0000-0002-6607-4382")),
+             person("Jia-Ang", "Ou", email = "willemou@gmail.com", 
+                    role = c("aut")))      
+Description: A package that extracts colors from a user-given raster image and 
+    returns a customized palette.
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 3.6.0)
+RoxygenNote: 7.1.1
+Imports: 
+    dplyr (>= 1.0.2),
+    ggplot2 (>= 3.3.2),
+    colorBlindness (>= 0.1.6),
+    ClusterR (>= 1.2.2),
+    magick (>= 2.5.2),
+    stringr (>= 1.4.0),
+    magrittr (>= 2.0.1)
+URL: https://github.com/GenChangHSU/PalCreatoR
+BugReports: https://github.com/GenChangHSU/PalCreatoR/issues
+License: MIT + file LICENSE
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,0 +1,64 @@
+---
+title: "Quick Demonstration"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick_Demonstration}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+ 
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+
+```{r function demonstration}
+# library(PalCreatoR)
+
+# image_path <- system.file("Mountain.JPG", package = "PalCreatoR")
+
+# My_pal <- create_pal(image = image_path,
+#     n = 5,
+#     resize = 0.1,
+#     method = "kmeans",
+#     colorblind = T,
+#     sort = "value",
+#     show.pal = T,
+#     title = "My Palette")
+#
+# print(My_pal)
+```
+
+Let's see how it goes in the figure:
+
+```{r ggplot2}
+# library(ggplot2)
+# spiral_df <- data.frame(x = seq(0, 13, length.out = 5000)) %>%
+#   mutate(y = exp(0.30635*x)) %>%
+#   mutate(x = rev(x),
+#          y = rev(y),
+#          polar_x = y*cos(x),
+#          polar_y = y*sin(x),
+#          x_start = rep(0, 5000),
+#          y_start = rep(0, 5000))
+# 
+# spiral_p <- ggplot(spiral_df) +
+#   geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
+#                color = rev(rainbow(5000)),
+#                size = 1) +
+#   geom_point(aes(x = polar_x, y = polar_y),
+#              color = "black",
+#              size = 0.1) +
+#   coord_fixed(ratio = 1) +
+#   theme_void()
+# 
+# 
+# spiral_p 
+
+```

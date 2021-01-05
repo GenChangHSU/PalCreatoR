@@ -48,7 +48,7 @@
   
 
 <meta property="og:title" content="Create a palette using colors extracted from an image — create_pal" />
-<meta property="og:description" content="create_pal creates a colorblind-friendly palette using
+<meta property="og:description" content="create_pal creates a palette using
     colors extracted from an image." />
 
 
@@ -141,7 +141,7 @@
     </div>
 
     <div class="ref-description">
-    <p><code>create_pal</code> creates a colorblind-friendly palette using
+    <p><code>create_pal</code> creates a palette using
     colors extracted from an image.</p>
     </div>
 
@@ -162,35 +162,36 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>image</th>
-      <td><p>a path to the raster image (JPG, JPEG, PNG, TIFF) from which the
-colors are to be extracted.</p></td>
+      <td><p>a file path/URL to the raster image (JPG, JPEG, PNG, TIFF) from which
+the colors are to be extracted.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>a positive integer. The number of colors in the palette.</p></td>
+      <td><p>a positive integer. The number of colors to be returned in the palette.</p></td>
     </tr>
     <tr>
       <th>resize</th>
       <td><p>a number between 0 and 1. This indicates the fraction by which
-the width/height (pixels) of the original image is resized while keeping
-the aspect ratio. Default to 0.1.</p></td>
+the width and height (in pixels) of the original image is resized through
+<code><a href='https://docs.ropensci.org/magick/reference/transform.html'>magick::image_resize</a></code>. Default to 0.1.</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>the clustering method for classifying pixels into groups based
+      <td><p>the classification method for grouping the image pixels based
 on the RGB values. Options are <code>"kmeans"</code> and <code>"Gaussian_mix"</code>.
-Default to <code>"kmeans"</code>.</p></td>
+Default to <code>"kmeans"</code>. See 'Details' section for more information.</p></td>
     </tr>
     <tr>
       <th>colorblind</th>
-      <td><p>logical. Whether to render the palette colorblind-friendly
-(also see the ‘Details’ section). Default to <code>FALSE</code>.</p></td>
+      <td><p>logical. Whether to render the palette colorblind-friendly.
+Default to <code>FALSE</code>. See 'Details' section for more information.</p></td>
     </tr>
     <tr>
       <th>sort</th>
-      <td><p>a character indicating how the colors should be sorted. Options
-are <code>"none"</code>, <code>"hue"</code>, <code>"saturation"</code>, and <code>"value"</code>.
-Default to <code>"none"</code>(unsorted).</p></td>
+      <td><p>a character indicating how the colors in the palette should be sorted.
+Available options are <code>"none"</code>, <code>"hue"</code>, <code>"saturation"</code>,
+and <code>"value"</code>. Default to <code>"none"</code>(unsorted). See 'Details' section
+for more information.</p></td>
     </tr>
     <tr>
       <th>show.pal</th>
@@ -212,15 +213,16 @@ Default to <code>"none"</code>(unsorted).</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Two clustering methods are available. For <code>method = "kmeans"</code>,
-    pixels are partitioned into clusters using <code>kmeans</code>,
+    image pixels are partitioned into clusters using <code><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></code>,
     and the RGB values of the cluster centers are converted into the corresponding
     hexadecimal color codes. For <code>method = "Gaussian_mix"</code>, pixel components
     are identified via multivariate Gaussian mixture modeling using <code><a href='https://rdrr.io/pkg/ClusterR/man/GMM.html'>ClusterR::GMM</a></code>,
     and the RGB values of the component centroids are converted into the
     corresponding hexadecimal color codes.</p>
-<p>If <code>"colorblind = TRUE"</code>, the original colors are replaced with
-    colorblind-friendly colors using <code><a href='https://rdrr.io/pkg/colorBlindness/man/replacePlotColor.html'>colorBlindness::replacePlotColor</a></code>.</p>
-<p>The colors in the palette can be sorted in the HSV color space.
+<p>If <code>"colorblind = TRUE"</code>, the original colors returned in the palette
+    are converted into their colorblind-friendly counterparts using
+    <code><a href='https://rdrr.io/pkg/colorBlindness/man/replacePlotColor.html'>colorBlindness::replacePlotColor</a></code>.</p>
+<p>The colors returned in the palette can be ordered in the HSV color space.
     If <code>sort = "hue"</code>, the colors are sorted by hue in an ascending order.
     If <code>sort = "saturation"</code>, the colors are sorted by saturation in a descending order.
     If <code>sort = "value"</code>, the colors are sorted by value in a descending order.</p>

@@ -17,25 +17,26 @@ create_pal(
 )
 }
 \arguments{
-\item{image}{a path to the raster image (JPG, JPEG, PNG, TIFF) from which the
-colors are to be extracted.}
+\item{image}{a file path/URL to the raster image (JPG, JPEG, PNG, TIFF) from which
+the colors are to be extracted.}
 
-\item{n}{a positive integer. The number of colors in the palette.}
+\item{n}{a positive integer. The number of colors to be returned in the palette.}
 
 \item{resize}{a number between 0 and 1. This indicates the fraction by which
-the width/height (pixels) of the original image is resized while keeping
-the aspect ratio. Default to 0.1.}
+the width and height (in pixels) of the original image is resized through
+\code{\link[magick:image_resize]{magick::image_resize}}. Default to 0.1.}
 
-\item{method}{the clustering method for classifying pixels into groups based
+\item{method}{the classification method for grouping the image pixels based
 on the RGB values. Options are \code{"kmeans"} and \code{"Gaussian_mix"}.
-Default to \code{"kmeans"}.}
+Default to \code{"kmeans"}. See 'Details' section for more information.}
 
-\item{colorblind}{logical. Whether to render the palette colorblind-friendly
-(also see the ‘Details’ section). Default to \code{FALSE}.}
+\item{colorblind}{logical. Whether to render the palette colorblind-friendly.
+Default to \code{FALSE}. See 'Details' section for more information.}
 
-\item{sort}{a character indicating how the colors should be sorted. Options
-are \code{"none"}, \code{"hue"}, \code{"saturation"}, and \code{"value"}.
-Default to \code{"none"}(unsorted).}
+\item{sort}{a character indicating how the colors in the palette should be sorted.
+Available options are \code{"none"}, \code{"hue"}, \code{"saturation"},
+and \code{"value"}. Default to \code{"none"}(unsorted). See 'Details' section
+for more information.}
 
 \item{show.pal}{logical. Whether to display the palette or not. Default to \code{TRUE}.}
 
@@ -47,22 +48,23 @@ Default to \code{"none"}(unsorted).}
 A vector of hexadecimal color codes.
 }
 \description{
-\code{create_pal} creates a colorblind-friendly palette using
+\code{create_pal} creates a palette using
     colors extracted from an image.
 }
 \details{
 Two clustering methods are available. For \code{method = "kmeans"},
-    pixels are partitioned into clusters using \code{\link[stats::kmeans]{kmeans}},
+    image pixels are partitioned into clusters using \code{\link[stats:kmeans]{kmeans}},
     and the RGB values of the cluster centers are converted into the corresponding
     hexadecimal color codes. For \code{method = "Gaussian_mix"}, pixel components
     are identified via multivariate Gaussian mixture modeling using \code{\link[ClusterR:GMM]{ClusterR::GMM}},
     and the RGB values of the component centroids are converted into the
     corresponding hexadecimal color codes.
 
-    If \code{"colorblind = TRUE"}, the original colors are replaced with
-    colorblind-friendly colors using \code{\link[colorBlindness:replacePlotColor]{colorBlindness::replacePlotColor}}.
+    If \code{"colorblind = TRUE"}, the original colors returned in the palette
+    are converted into their colorblind-friendly counterparts using
+    \code{\link[colorBlindness:replacePlotColor]{colorBlindness::replacePlotColor}}.
 
-    The colors in the palette can be sorted in the HSV color space.
+    The colors returned in the palette can be ordered in the HSV color space.
     If \code{sort = "hue"}, the colors are sorted by hue in an ascending order.
     If \code{sort = "saturation"}, the colors are sorted by saturation in a descending order.
     If \code{sort = "value"}, the colors are sorted by value in a descending order.

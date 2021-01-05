@@ -7,10 +7,10 @@
 
 The PalCreatoR package is designed to create an R palette using colors
 from an image. It streamlines the process of pulling out a number of
-representative colors from the given image based on user’s request and
-returning the corresponding hexadecimal codes. It also provides an
-option for generating colorblind-friendly colors. Just pick an image of
-your favorite and pass it into the
+representative colors from the given image and returning the
+corresponding hexadecimal codes. It also offers the option to get
+colorblind-friendly colors. Just pick an image of your favorite and pass
+it into the
 [function](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html):
 a customized palette is readily available for you\! Use it for
 presentation, publication, or simply for fun\!
@@ -18,7 +18,7 @@ presentation, publication, or simply for fun\!
 ## Background
 
 The idea of creating color palettes from an image is not something new
-in R. Several packages (e.g.,
+in the R community. Several packages (e.g.,
 [imgpalr](https://cran.rstudio.com/web/packages/imgpalr/index.html),
 [paletteR](https://github.com/AndreaCirilloAC/paletter),
 [PNWColors](https://github.com/jakelawlor/PNWColors),
@@ -27,12 +27,13 @@ and functions (e.g.,
 [palettebuildr](https://gist.github.com/jonesor/1818babb03783dc41a1a))
 have been developed for this purpose, with a wide range of arguments
 available. Inspired by these works, the PalCreatoR package aims to
-provide an easy-to-use tool that achieves the same goal while keeping
-the syntax as simple as possible. It features two options so far not yet
-been implemented in the functions of its kind: (1) allowing the choice
-of colorblind-friendly colors, and (2) using a multivariate Gaussian
-mixture modeling (GMM) approach to clustering pixels based on the RGB
-values.
+provide an easy-to-use tool that does the same job while keeping the
+arguments as simple as possible. It incorporates two features that have
+so far not yet been implemented in the current functions of its kind:
+(1) allowing users to get the colorblind-friendly colors converted from
+the original colors in the palette, and (2) using a multivariate
+Gaussian mixture modeling (GMM) approach, besides the most-used kmeans
+algorithm, to extract the representative colors from the image.
 
 ## Installation
 
@@ -40,14 +41,15 @@ The latest version of PalCreatoR can be installed from GitHub:
 
 ``` r
 # install.packages("devtools")
-# devtools::install_github("GenChangHSU/PalCreatoR")
+devtools::install_github("GenChangHSU/PalCreatoR")
 ```
 
 ## Examples
 
-Here are some example palettes generated using the function
+Here are some example palettes generated with the function
 [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html).
-For more details, see `vignette(PalCreatoR)`.
+For more details, see [Quick
+Demonstration](https://genchanghsu.github.io/PalCreatoR/articles/Quick_Demonstration.html).
 
 <br>
 

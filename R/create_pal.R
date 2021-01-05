@@ -1,38 +1,40 @@
 #' @title Create a palette using colors extracted from an image
 #'
-#' @description \code{create_pal} creates a colorblind-friendly palette using
+#' @description \code{create_pal} creates a palette using
 #'     colors extracted from an image.
 #'
-#' @param image a path to the raster image (JPG, JPEG, PNG, TIFF) from which the
-#'     colors are to be extracted.
-#' @param n a positive integer. The number of colors in the palette.
+#' @param image a file path/URL to the raster image (JPG, JPEG, PNG, TIFF) from which
+#'     the colors are to be extracted.
+#' @param n a positive integer. The number of colors to be returned in the palette.
 #' @param resize a number between 0 and 1. This indicates the fraction by which
-#'     the width/height (pixels) of the original image is resized while keeping
-#'     the aspect ratio. Default to 0.1.
-#' @param method the clustering method for classifying pixels into groups based
+#'     the width and height (in pixels) of the original image is resized through
+#'     \code{\link[magick:image_resize]{magick::image_resize}}. Default to 0.1.
+#' @param method the classification method for grouping the image pixels based
 #'     on the RGB values. Options are \code{"kmeans"} and \code{"Gaussian_mix"}.
-#'     Default to \code{"kmeans"}.
-#' @param colorblind logical. Whether to render the palette colorblind-friendly
-#'     (also see the ‘Details’ section). Default to \code{FALSE}.
-#' @param sort a character indicating how the colors should be sorted. Options
-#'     are \code{"none"}, \code{"hue"}, \code{"saturation"}, and \code{"value"}.
-#'     Default to \code{"none"}(unsorted).
+#'     Default to \code{"kmeans"}. See 'Details' section for more information.
+#' @param colorblind logical. Whether to render the palette colorblind-friendly.
+#'     Default to \code{FALSE}. See 'Details' section for more information.
+#' @param sort a character indicating how the colors in the palette should be sorted.
+#'     Available options are \code{"none"}, \code{"hue"}, \code{"saturation"},
+#'     and \code{"value"}. Default to \code{"none"}(unsorted). See 'Details' section
+#'     for more information.
 #' @param show.pal logical. Whether to display the palette or not. Default to \code{TRUE}.
 #' @param title a character string giving the title of the displayed palette.
 #' @param ... additional arguments passed to \code{\link[ggplot2:theme]{ggplot2::theme}}.
 #'
 #' @details Two clustering methods are available. For \code{method = "kmeans"},
-#'     pixels are partitioned into clusters using \code{\link[stats::kmeans]{kmeans}},
+#'     image pixels are partitioned into clusters using \code{\link[stats:kmeans]{kmeans}},
 #'     and the RGB values of the cluster centers are converted into the corresponding
 #'     hexadecimal color codes. For \code{method = "Gaussian_mix"}, pixel components
 #'     are identified via multivariate Gaussian mixture modeling using \code{\link[ClusterR:GMM]{ClusterR::GMM}},
 #'     and the RGB values of the component centroids are converted into the
 #'     corresponding hexadecimal color codes.
 #'
-#'     If \code{"colorblind = TRUE"}, the original colors are replaced with
-#'     colorblind-friendly colors using \code{\link[colorBlindness:replacePlotColor]{colorBlindness::replacePlotColor}}.
+#'     If \code{"colorblind = TRUE"}, the original colors returned in the palette
+#'     are converted into their colorblind-friendly counterparts using
+#'     \code{\link[colorBlindness:replacePlotColor]{colorBlindness::replacePlotColor}}.
 #'
-#'     The colors in the palette can be sorted in the HSV color space.
+#'     The colors returned in the palette can be ordered in the HSV color space.
 #'     If \code{sort = "hue"}, the colors are sorted by hue in an ascending order.
 #'     If \code{sort = "saturation"}, the colors are sorted by saturation in a descending order.
 #'     If \code{sort = "value"}, the colors are sorted by value in a descending order.
@@ -234,6 +236,8 @@ create_pal <- function(image,
 
 
   # 8. Visualize the palette
+  if (show.pal == T) {
+
   if (n <= 10) {
     Pal_df <- Pal_vector %>%
       data.frame(Hex_code = .) %>%
@@ -275,7 +279,6 @@ create_pal <- function(image,
     ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5, size = 18)) +
     ggplot2::theme(...)
 
-  if (show.pal == T) {
     print(p)
   }
 

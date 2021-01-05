@@ -19,15 +19,15 @@ knitr::opts_chunk$set(
 options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
-This vignette shows you some examples of using the package's main function, [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html). You will learn how to make good use of its functionality to create your own nice palette.   
+This vignette shows you some examples of using the package's main function, [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html). You will learn how to make good use of its functionality to create your own awesome palette.   
 
-We will play around with the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (*Sedum morrisonense* Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage. During summertime, blossoms of bright yellow flowers will burst into bloom.
+We will play around with the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (*Sedum morrisonense* Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage in addition to photosynthesis. During summertime, blossoms of bright yellow flowers will burst into bloom.
 
 <img src = "C:/Users/Win7/Desktop/PalCreatoR/inst/Alpine Flower.JPG" align = "center" height = "400" />
 
 <br>
 
-Let's start with a simple example:
+Now let's start with a simple example:
 ```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
 # Get the path of the image
 library(PalCreatoR) 
@@ -83,7 +83,7 @@ My_pal_value <- create_pal(image = image_path, n = 5, sort = "value", title = "M
 
 <br>
 
-Another novel feature of the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function is that you can specify `method = Gaussian_mix` to apply multivariate Gaussian mixture modeling
+Another novel feature in the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function is that you can specify `method = "Gaussian_mix"` to apply multivariate Gaussian mixture modeling (GMM)
 instead of the default kmeans algorithm to extract the representative colors from the image: 
 
 ```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
@@ -94,7 +94,7 @@ My_pal_kmeans <- create_pal(image = image_path, n = 5, method = "kmeans", sort =
 My_pal_Gaussian_mix <- create_pal(image = image_path, n = 5, method = "Gaussian_mix", sort = "value", title = "My Palette \n (GMM)")
 ```
 
-Not too much difference in this case.
+Not much difference in this case.
 
 <br>
 
@@ -102,8 +102,8 @@ Finally, if you do not want to see your palette, set `show.pal = FALSE`. This wi
 
 <br>
 
-Let's apply the palettes to the figure:
-```{r, tidy = FALSE }
+Let's use the palettes in the figure:
+```{r, tidy = FALSE}
 library(ggplot2)
 library(ggpubr)
 
@@ -144,7 +144,7 @@ spiral_p2 <- ggplot(spiral_df) +
 
 # Arrange the spirals
 ggarrange(spiral_p1, spiral_p2)
-# Dazzling colors
+# Dazzling effect
 spiral_p1_dazzle <- ggplot(spiral_df) +
   geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
                color = rep(My_pal1, 500),

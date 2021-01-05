@@ -94,11 +94,12 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The PalCreatoR package is designed to create an R palette using colors from an image. It streamlines the process of pulling out a number of representative colors from the given image based on user’s request and returning the corresponding hexadecimal codes. It also provides an option for generating colorblind-friendly colors. Just pick an image of your favorite and pass it into the <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html">function</a>: a customized palette is readily available for you! Use it for presentation, publication, or simply for fun!</p>
+<p>The PalCreatoR package is designed to create an R palette using colors from an image. It streamlines the process of pulling out a number of representative colors from the given image and returning the corresponding hexadecimal codes. It also offers the option to get colorblind-friendly colors. Just pick an image of your favorite and pass it into the <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html">function</a>: a customized palette is readily available for you! Use it for presentation, publication, or simply for fun!</p>
 <div id="background" class="section level2">
 <h2 class="hasAnchor">
 <a href="#background" class="anchor"></a>Background</h2>
-<p>The idea of creating color palettes from an image is not something new in R. Several packages (e.g., <a href="https://cran.rstudio.com/web/packages/imgpalr/index.html">imgpalr</a>, <a href="https://github.com/AndreaCirilloAC/paletter">paletteR</a>, <a href="https://github.com/jakelawlor/PNWColors">PNWColors</a>, <a href="https://cran.r-project.org/web/packages/RImagePalette/index.html">RImagePalette</a>) and functions (e.g., <a href="https://gist.github.com/jonesor/1818babb03783dc41a1a">palettebuildr</a>) have been developed for this purpose, with a wide range of arguments available. Inspired by these works, the PalCreatoR package aims to provide an easy-to-use tool that achieves the same goal while keeping the syntax as simple as possible. It features two options so far not yet been implemented in the functions of its kind: (1) allowing the choice of colorblind-friendly colors, and (2) using a multivariate Gaussian mixture modeling (GMM) approach to clustering pixels based on the RGB values.</p>
+<p>The idea of creating color palettes from an image is not something new in the R community. Several packages (e.g., <a href="https://cran.rstudio.com/web/packages/imgpalr/index.html">imgpalr</a>, <a href="https://github.com/AndreaCirilloAC/paletter">paletteR</a>, <a href="https://github.com/jakelawlor/PNWColors">PNWColors</a>, <a href="https://cran.r-project.org/web/packages/RImagePalette/index.html">RImagePalette</a>) and functions (e.g., <a href="https://gist.github.com/jonesor/1818babb03783dc41a1a">palettebuildr</a>) have been developed for this purpose, with a wide range of arguments available. Inspired by these works, the PalCreatoR package aims to provide an easy-to-use tool that does the same job while keeping the arguments as simple as possible. It incorporates two features that have so far not yet been implemented in the current functions of its kind:</p>
+<p>(1) allowing users to get the colorblind-friendly colors converted from the original colors in the palette, and (2) using a multivariate Gaussian mixture modeling (GMM) approach, besides the most-used kmeans algorithm, to extract the representative colors from the image.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -106,12 +107,12 @@
 <p>The latest version of PalCreatoR can be installed from GitHub:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="co"># devtools::install_github("GenChangHSU/PalCreatoR")</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"GenChangHSU/PalCreatoR"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<p>Here are some example palettes generated using the function <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html"><code>create_pal</code></a>. For more details, see <code>vignette(PalCreatoR)</code>.</p>
+<p>Here are some example palettes generated with the function <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html"><code>create_pal</code></a>. For more details, see <a href="https://genchanghsu.github.io/PalCreatoR/articles/Quick_Demonstration.html">Quick Demonstration</a>.</p>
 <p><br></p>
 <p><img src="inst/Mountain.JPG" align="left" height="300"><img src="reference/figures/README-palette%20example%201-1.png" width="30%"></p>
 <p><br><br></p>

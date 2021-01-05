@@ -70,5 +70,3 @@ For more details, see `vignette(PalCreatoR)`.
 
 Like it? Feel free to reach us at <ymstrknp@gmail.com> and
 <willemou@gmail.com>. Any suggestions or cool ideas are welcome\!
-
-Have fun and enjoy\!\!\!

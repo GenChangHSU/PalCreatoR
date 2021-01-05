@@ -81,7 +81,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PalCreatoR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -150,10 +150,10 @@
   <span class='va'>n</span>,
   resize <span class='op'>=</span> <span class='fl'>0.1</span>,
   method <span class='op'>=</span> <span class='st'>"kmeans"</span>,
-  colorblind <span class='op'>=</span> <span class='cn'>T</span>,
+  colorblind <span class='op'>=</span> <span class='cn'>FALSE</span>,
   sort <span class='op'>=</span> <span class='st'>"none"</span>,
-  show.pal <span class='op'>=</span> <span class='cn'>T</span>,
-  <span class='va'>title</span>,
+  show.pal <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  title <span class='op'>=</span> <span class='st'>""</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -184,7 +184,7 @@ Default to <code>"kmeans"</code>.</p></td>
     <tr>
       <th>colorblind</th>
       <td><p>logical. Whether to render the palette colorblind-friendly
-(also see the ‘Details’ section). Default to <code>TRUE</code>.</p></td>
+(also see the ‘Details’ section). Default to <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>sort</th>
@@ -218,9 +218,9 @@ Default to <code>"none"</code>(unsorted).</p></td>
     are identified via multivariate Gaussian mixture modeling using <code><a href='https://rdrr.io/pkg/ClusterR/man/GMM.html'>ClusterR::GMM</a></code>,
     and the RGB values of the component centroids are converted into the
     corresponding hexadecimal color codes.</p>
-<p>If <code>"colorblind = T"</code>, the original colors are replaced with
+<p>If <code>"colorblind = TRUE"</code>, the original colors are replaced with
     colorblind-friendly colors using <code><a href='https://rdrr.io/pkg/colorBlindness/man/replacePlotColor.html'>colorBlindness::replacePlotColor</a></code>.</p>
-<p>The colors in the palette can be sorted based on their HSV values.
+<p>The colors in the palette can be sorted in the HSV color space.
     If <code>sort = "hue"</code>, the colors are sorted by hue in an ascending order.
     If <code>sort = "saturation"</code>, the colors are sorted by saturation in a descending order.
     If <code>sort = "value"</code>, the colors are sorted by value in a descending order.</p>
@@ -234,9 +234,9 @@ Default to <code>"none"</code>(unsorted).</p></td>
                      n <span class='op'>=</span> <span class='fl'>5</span>,
                      resize <span class='op'>=</span> <span class='fl'>0.1</span>,
                      method <span class='op'>=</span> <span class='st'>"kmeans"</span>,
-                     colorblind <span class='op'>=</span> <span class='cn'>T</span>,
+                     colorblind <span class='op'>=</span> <span class='cn'>FALSE</span>,
                      sort <span class='op'>=</span> <span class='st'>"value"</span>,
-                     show.pal <span class='op'>=</span> <span class='cn'>T</span>,
+                     show.pal <span class='op'>=</span> <span class='cn'>TRUE</span>,
                      title <span class='op'>=</span> <span class='st'>"My Palette"</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>My_pal</span><span class='op'>)</span><span class='op'>}</span>

@@ -38,7 +38,7 @@ Here are some example palettes generated using the function [`create_pal`](https
 <br>
 
 <img src = "inst/Mountain.JPG" align = "left" height = "300" />
-```{r palette example 1, echo = FALSE, message = FALSE , out.width = "30%", fig.width = 3.5, fig.height = 4}
+```{r palette example 1, echo = FALSE, message = FALSE, out.width = "30%", fig.width = 3.5, fig.height = 4}
 library(PalCreatoR)
 library(magrittr)
 image_path <- system.file("Mountain.JPG", package = "PalCreatoR")
@@ -57,7 +57,7 @@ My_pal <- create_pal(image = image_path,
 <br>
 
 <img src = "inst/Cicada.JPG" align = "left" height = "300" />
-```{r palette example 2, echo = FALSE, message = FALSE , out.width = "30%", fig.width = 3.5, fig.height = 4}
+```{r palette example 2, echo = FALSE, message = FALSE, out.width = "30%", fig.width = 3.5, fig.height = 4}
 image_path <- system.file("Cicada.JPG", package = "PalCreatoR")
 
 My_pal <- create_pal(image = image_path,
@@ -74,7 +74,7 @@ My_pal <- create_pal(image = image_path,
 <br>
 
 <img src = "inst/Alpine Flower.JPG" align = "left" height = "300" />
-```{r palette example 3, echo = FALSE, message = FALSE , out.width = "30%", fig.width = 3.5, fig.height = 4}
+```{r palette example 3, echo = FALSE, message = FALSE, out.width = "30%", fig.width = 3.5, fig.height = 4}
 image_path <- system.file("Alpine Flower.JPG", package = "PalCreatoR")
 
 My_pal <- create_pal(image = image_path,
@@ -92,5 +92,4 @@ My_pal <- create_pal(image = image_path,
 ## Contact 
 Like it? Feel free to reach us at <ymstrknp@gmail.com> and <willemou@gmail.com>. Any suggestions or cool ideas are welcome! 
 
-Have fun and enjoy!!!
 

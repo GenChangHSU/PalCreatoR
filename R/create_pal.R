@@ -13,7 +13,7 @@
 #'     on the RGB values. Options are \code{"kmeans"} and \code{"Gaussian_mix"}.
 #'     Default to \code{"kmeans"}.
 #' @param colorblind logical. Whether to render the palette colorblind-friendly
-#'     (also see the ‘Details’ section). Default to \code{TRUE}.
+#'     (also see the ‘Details’ section). Default to \code{FALSE}.
 #' @param sort a character indicating how the colors should be sorted. Options
 #'     are \code{"none"}, \code{"hue"}, \code{"saturation"}, and \code{"value"}.
 #'     Default to \code{"none"}(unsorted).
@@ -29,10 +29,10 @@
 #'     and the RGB values of the component centroids are converted into the
 #'     corresponding hexadecimal color codes.
 #'
-#'     If \code{"colorblind = T"}, the original colors are replaced with
+#'     If \code{"colorblind = TRUE"}, the original colors are replaced with
 #'     colorblind-friendly colors using \code{\link[colorBlindness:replacePlotColor]{colorBlindness::replacePlotColor}}.
 #'
-#'     The colors in the palette can be sorted based on their HSV values.
+#'     The colors in the palette can be sorted in the HSV color space.
 #'     If \code{sort = "hue"}, the colors are sorted by hue in an ascending order.
 #'     If \code{sort = "saturation"}, the colors are sorted by saturation in a descending order.
 #'     If \code{sort = "value"}, the colors are sorted by value in a descending order.
@@ -49,9 +49,9 @@
 #'                      n = 5,
 #'                      resize = 0.1,
 #'                      method = "kmeans",
-#'                      colorblind = T,
+#'                      colorblind = FALSE,
 #'                      sort = "value",
-#'                      show.pal = T,
+#'                      show.pal = TRUE,
 #'                      title = "My Palette")
 #'
 #' print(My_pal)}
@@ -59,10 +59,10 @@ create_pal <- function(image,
                        n,
                        resize = 0.1,
                        method = "kmeans",
-                       colorblind = T,
+                       colorblind = FALSE,
                        sort = "none",
-                       show.pal = T,
-                       title,
+                       show.pal = TRUE,
+                       title = "",
                        ...) {
 
   # Error messages -------------------------------------------------------------------------
@@ -282,3 +282,5 @@ create_pal <- function(image,
   # 9. Return the palette vector
   return(Pal_vector)
 }
+
+

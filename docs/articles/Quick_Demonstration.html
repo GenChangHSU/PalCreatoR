@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PalCreatoR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -99,48 +99,174 @@
 
     
     
+<p>This vignette shows you some examples of using the package’s main function, <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html"><code>create_pal</code></a>. You will learn how to make good use of its functionality to create your own nice palette.</p>
+<p>We will play around with the <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html"><code>create_pal</code></a> function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (<em>Sedum morrisonense</em> Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage. During summertime, blossoms of bright yellow flowers will burst into bloom.</p>
+<p><img src="../inst/Alpine%20Flower.JPG" align="center" height="400"></p>
+<p><br></p>
+<p>Let’s start with a simple example:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># library(PalCreatoR)</span>
+<code class="sourceCode R"><span class="co"># Get the path of the image</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/GenChangHSU/PalCreatoR">PalCreatoR</a></span><span class="op">)</span> 
+<span class="va">image_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"Alpine Flower.JPG"</span>, package <span class="op">=</span> <span class="st">"PalCreatoR"</span><span class="op">)</span>
 
-<span class="co"># image_path &lt;- system.file("Mountain.JPG", package = "PalCreatoR")</span>
+<span class="co"># Create a basic palette with 5 colors</span>
+<span class="va">My_pal_5</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, title <span class="op">=</span> <span class="st">"My Palette (n = 5)"</span><span class="op">)</span>
 
-<span class="co"># My_pal &lt;- create_pal(image = image_path,</span>
-<span class="co">#     n = 5,</span>
-<span class="co">#     resize = 0.1,</span>
-<span class="co">#     method = "kmeans",</span>
-<span class="co">#     colorblind = T,</span>
-<span class="co">#     sort = "value",</span>
-<span class="co">#     show.pal = T,</span>
-<span class="co">#     title = "My Palette")</span>
-<span class="co">#</span>
-<span class="co"># print(My_pal)</span></code></pre></div>
-<p>Let’s see how it goes in the figure:</p>
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">My_pal_5</span><span class="op">)</span>
+<span class="co">#&gt; [1] "#8B7E61" "#4E5542" "#EDCB37" "#212218" "#BAA586"</span></code></pre></div>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-2-1.png" width="50%"></p>
+<p><br></p>
+<p>More colors:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># library(ggplot2)</span>
-<span class="co"># spiral_df &lt;- data.frame(x = seq(0, 13, length.out = 5000)) %&gt;%</span>
-<span class="co">#   mutate(y = exp(0.30635*x)) %&gt;%</span>
-<span class="co">#   mutate(x = rev(x),</span>
-<span class="co">#          y = rev(y),</span>
-<span class="co">#          polar_x = y*cos(x),</span>
-<span class="co">#          polar_y = y*sin(x),</span>
-<span class="co">#          x_start = rep(0, 5000),</span>
-<span class="co">#          y_start = rep(0, 5000))</span>
-<span class="co"># </span>
-<span class="co"># spiral_p &lt;- ggplot(spiral_df) +</span>
-<span class="co">#   geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),</span>
-<span class="co">#                color = rev(rainbow(5000)),</span>
-<span class="co">#                size = 1) +</span>
-<span class="co">#   geom_point(aes(x = polar_x, y = polar_y),</span>
-<span class="co">#              color = "black",</span>
-<span class="co">#              size = 0.1) +</span>
-<span class="co">#   coord_fixed(ratio = 1) +</span>
-<span class="co">#   theme_void()</span>
-<span class="co"># </span>
-<span class="co"># </span>
-<span class="co"># spiral_p </span>
-<span class="co">#</span>
-<span class="co">#</span>
-<span class="co">#</span></code></pre></div>
+<code class="sourceCode R"><span class="va">My_pal_10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">10</span>, title <span class="op">=</span> <span class="st">"My Palette (n = 10)"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">My_pal_10</span><span class="op">)</span>
+<span class="co">#&gt;  [1] "#A98149" "#777570" "#F1D135" "#3A3E29" "#CBBEA5" "#171811" "#4D5252"</span>
+<span class="co">#&gt;  [8] "#C4A56F" "#A89985" "#64772F"</span></code></pre></div>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-3-1.png" width="50%"></p>
+<p><br></p>
+<p>By default, the colors in the palette are not checked for colorblind safe. To get the colorblind-friendly colors, set <code>colorblind = TRUE</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">My_pal_clb</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, colorblind <span class="op">=</span> <span class="cn">TRUE</span>, title <span class="op">=</span> <span class="st">"My Palette \n (colorblind-friendly)"</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">My_pal_clb</span><span class="op">)</span>
+<span class="co">#&gt; [1] "#8B7E60" "#435E6A" "#00D9FF" "#19252D" "#BCA681"</span></code></pre></div>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-4-1.png" width="50%"></p>
+<p><br></p>
+The colors in the palette are not ordered by default. You can sort the colors in the <a href="https://en.wikipedia.org/wiki/HSL_and_HSV">HSV color space</a>. Three options are available:
+<ol>
+<li>
+<code>sort = "hue"</code>: the colors are sorted by hue <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> in an ascending order (i.e., from red, yellow, green, to cyan, blue, and magenta);
+</li>
+<li>
+<code>sort = "saturation"</code>: the colors are sorted by saturation <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> in a descending order (i.e., from pure to gray);
+</li>
+<li>
+<code>sort = "value"</code>: the colors are sorted by value <a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> in a descending order (i.e., from bright to dark).
+</li>
+</ol>
+<p>Let’s visualize the effects of color sorting:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Unsorted</span>
+<span class="va">My_pal_none</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, sort <span class="op">=</span> <span class="st">"none"</span>, title <span class="op">=</span> <span class="st">"My Palette \n (unsorted)"</span><span class="op">)</span>
+
+<span class="co"># By hue</span>
+<span class="va">My_pal_hue</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, sort <span class="op">=</span> <span class="st">"hue"</span>, title <span class="op">=</span> <span class="st">"My Palette \n (sorted by hue)"</span><span class="op">)</span>
+
+<span class="co"># By saturation</span>
+<span class="va">My_pal_saturation</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, sort <span class="op">=</span> <span class="st">"saturation"</span>, title <span class="op">=</span> <span class="st">"My Palette \n (sorted by saturation)"</span><span class="op">)</span>
+
+<span class="co"># By value</span>
+<span class="va">My_pal_value</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, sort <span class="op">=</span> <span class="st">"value"</span>, title <span class="op">=</span> <span class="st">"My Palette \n (sorted by value)"</span><span class="op">)</span></code></pre></div>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-5-1.png" width="50%"><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-5-2.png" width="50%"><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-5-3.png" width="50%"><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-5-4.png" width="50%"></p>
+<p><br></p>
+<p>Another novel feature of the <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html"><code>create_pal</code></a> function is that you can specify <code>method = Gaussian_mix</code> to apply multivariate Gaussian mixture modeling instead of the default kmeans algorithm to extract the representative colors from the image:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># kmeans</span>
+<span class="va">My_pal_kmeans</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, method <span class="op">=</span> <span class="st">"kmeans"</span>, sort <span class="op">=</span> <span class="st">"value"</span>, title <span class="op">=</span> <span class="st">"My Palette \n (kmeans)"</span><span class="op">)</span>
+
+<span class="co"># Gaussian mixture modeling</span>
+<span class="va">My_pal_Gaussian_mix</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, method <span class="op">=</span> <span class="st">"Gaussian_mix"</span>, sort <span class="op">=</span> <span class="st">"value"</span>, title <span class="op">=</span> <span class="st">"My Palette \n (GMM)"</span><span class="op">)</span></code></pre></div>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-6-1.png" width="50%"><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-6-2.png" width="50%"></p>
+<p>Not too much difference in this case.</p>
+<p><br></p>
+<p>Finally, if you do not want to see your palette, set <code>show.pal = FALSE</code>. This will return only the color code vector.</p>
+<p><br></p>
+<p>Let’s apply the palettes to the figure:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/ggpubr/">ggpubr</a></span><span class="op">)</span>
+
+<span class="co"># Create the palettes</span>
+<span class="va">My_pal1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">10</span>, sort <span class="op">=</span> <span class="st">"value"</span>, colorblind <span class="op">=</span> <span class="cn">FALSE</span>, show.pal <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
+<span class="va">My_pal2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">10</span>, sort <span class="op">=</span> <span class="st">"value"</span>, colorblind <span class="op">=</span> <span class="cn">TRUE</span>, show.pal <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
+
+<span class="co"># The golden spiral</span>
+<span class="va">spiral_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">13</span>, length.out <span class="op">=</span> <span class="fl">5000</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="fl">0.30635</span><span class="op">*</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
+         y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>,
+         polar_x <span class="op">=</span> <span class="va">y</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">cos</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
+         polar_y <span class="op">=</span> <span class="va">y</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/Trig.html">sin</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>,
+         x_start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5000</span><span class="op">)</span>,
+         y_start <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5000</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Plot the spirals (package logo)</span>
+<span class="va">spiral_p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">spiral_df</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_start</span>, y <span class="op">=</span> <span class="va">y_start</span>, xend <span class="op">=</span> <span class="va">polar_x</span>, yend <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+               color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">My_pal1</span>, each <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>,
+               size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">polar_x</span>, y <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+             color <span class="op">=</span> <span class="st">"black"</span>,
+             size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">spiral_p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">spiral_df</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_start</span>, y <span class="op">=</span> <span class="va">y_start</span>, xend <span class="op">=</span> <span class="va">polar_x</span>, yend <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+               color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">My_pal2</span>, each <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>,
+               size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">polar_x</span>, y <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+             color <span class="op">=</span> <span class="st">"black"</span>,
+             size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Arrange the spirals</span>
+<span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html">ggarrange</a></span><span class="op">(</span><span class="va">spiral_p1</span>, <span class="va">spiral_p2</span><span class="op">)</span></code></pre></div>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Dazzling colors</span>
+<span class="va">spiral_p1_dazzle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">spiral_df</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_start</span>, y <span class="op">=</span> <span class="va">y_start</span>, xend <span class="op">=</span> <span class="va">polar_x</span>, yend <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+               color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">My_pal1</span>, <span class="fl">500</span><span class="op">)</span>,
+               size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">polar_x</span>, y <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+             color <span class="op">=</span> <span class="st">"black"</span>,
+             size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">spiral_p2_dazzle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">spiral_df</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_start</span>, y <span class="op">=</span> <span class="va">y_start</span>, xend <span class="op">=</span> <span class="va">polar_x</span>, yend <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+               color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">My_pal2</span>, <span class="fl">500</span><span class="op">)</span>,
+               size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">polar_x</span>, y <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+             color <span class="op">=</span> <span class="st">"black"</span>,
+             size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Arrange the spirals</span>
+<span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html">ggarrange</a></span><span class="op">(</span><span class="va">spiral_p1_dazzle</span>, <span class="va">spiral_p2_dazzle</span><span class="op">)</span></code></pre></div>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-7-2.png" width="700"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Color gradients</span>
+<span class="va">My_pal3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5000</span>, sort <span class="op">=</span> <span class="st">"value"</span>, colorblind <span class="op">=</span> <span class="cn">FALSE</span>, show.pal <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="co"># This might take a while to run</span>
+
+<span class="va">spiral_p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">spiral_df</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_segment.html">geom_segment</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x_start</span>, y <span class="op">=</span> <span class="va">y_start</span>, xend <span class="op">=</span> <span class="va">polar_x</span>, yend <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+               color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">My_pal3</span><span class="op">)</span>,
+               size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">polar_x</span>, y <span class="op">=</span> <span class="va">polar_y</span><span class="op">)</span>,
+             color <span class="op">=</span> <span class="st">"black"</span>,
+             size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="va">spiral_p3</span></code></pre></div>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-7-3.png" width="700"></p>
+<p><br></p>
+<p>Interested? Grab your own image and try it out now!</p>
+<p>Have fun and enjoy!!!</p>
+<div class="footnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Hue represents the angle of the color (in degree) on the RGB color circle. A hue value of 0° gives red, 120° green, and 240° blue.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Saturation controls the amount of color used. A saturation value of 100% will be the purest color possible for the given hue; a saturation value of 0% results in grayscale color.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Value indicates the brightness of the color. A value of 100% has no black mixed into the color; a value of 0% gives pure black.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

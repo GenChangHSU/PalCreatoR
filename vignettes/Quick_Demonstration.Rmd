@@ -11,56 +11,185 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  tidy.opts = list(width.cutoff = 60), 
+  tidy = TRUE
 )
  
 options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
+This vignette shows you some examples of using the package's main function, [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html). You will learn how to make good use of its functionality to create your own nice palette.   
 
-```{r function demonstration}
-# library(PalCreatoR)
+We will play around with the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (*Sedum morrisonense* Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage. During summertime, blossoms of bright yellow flowers will burst into bloom.
 
-# image_path <- system.file("Mountain.JPG", package = "PalCreatoR")
+<img src = "C:/Users/Win7/Desktop/PalCreatoR/inst/Alpine Flower.JPG" align = "center" height = "400" />
 
-# My_pal <- create_pal(image = image_path,
-#     n = 5,
-#     resize = 0.1,
-#     method = "kmeans",
-#     colorblind = T,
-#     sort = "value",
-#     show.pal = T,
-#     title = "My Palette")
-#
-# print(My_pal)
+<br>
+
+Let's start with a simple example:
+```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
+# Get the path of the image
+library(PalCreatoR) 
+image_path <- system.file("Alpine Flower.JPG", package = "PalCreatoR")
+
+# Create a basic palette with 5 colors
+My_pal_5 <- create_pal(image = image_path, n = 5, title = "My Palette (n = 5)")
+
+print(My_pal_5)
 ```
 
-Let's see how it goes in the figure:
+<br>
 
-```{r ggplot2}
-# library(ggplot2)
-# spiral_df <- data.frame(x = seq(0, 13, length.out = 5000)) %>%
-#   mutate(y = exp(0.30635*x)) %>%
-#   mutate(x = rev(x),
-#          y = rev(y),
-#          polar_x = y*cos(x),
-#          polar_y = y*sin(x),
-#          x_start = rep(0, 5000),
-#          y_start = rep(0, 5000))
-# 
-# spiral_p <- ggplot(spiral_df) +
-#   geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
-#                color = rev(rainbow(5000)),
-#                size = 1) +
-#   geom_point(aes(x = polar_x, y = polar_y),
-#              color = "black",
-#              size = 0.1) +
-#   coord_fixed(ratio = 1) +
-#   theme_void()
-# 
-# 
-# spiral_p 
-#
-#
-#
+More colors:
+```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
+My_pal_10 <- create_pal(image = image_path, n = 10, title = "My Palette (n = 10)")
+
+print(My_pal_10)
 ```
+
+<br>
+
+By default, the colors in the palette are not checked for colorblind safe. To get the colorblind-friendly colors, set `colorblind = TRUE`:
+```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
+My_pal_clb <- create_pal(image = image_path, n = 5, colorblind = TRUE, title = "My Palette \n (colorblind-friendly)")
+
+print(My_pal_clb)
+```
+
+<br>
+
+The colors in the palette are not ordered by default. You can sort the colors in the [HSV color space](https://en.wikipedia.org/wiki/HSL_and_HSV). Three options are available:
+<ol>
+  <li>`sort = "hue"`: the colors are sorted by hue ^[Hue represents the angle of the color (in degree) on the RGB color circle. A hue value of 0° gives red, 120° green, and 240° blue.] in an ascending order (i.e., from red, yellow, green, to cyan, blue, and magenta);</li>
+  <li>`sort = "saturation"`: the colors are sorted by saturation ^[Saturation controls the amount of color used. A saturation value of 100% will be the purest color possible for the given hue; a saturation value of 0% results in grayscale color.] in a descending order (i.e., from pure to gray);</li>
+  <li>`sort = "value"`: the colors are sorted by value ^[Value indicates the brightness of the color. A value of 100% has no black mixed into the color; a value of 0% gives pure black.] in a descending order (i.e., from bright to dark).</li>
+</ol>
+
+Let's visualize the effects of color sorting:
+```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
+# Unsorted
+My_pal_none <- create_pal(image = image_path, n = 5, sort = "none", title = "My Palette \n (unsorted)")
+
+# By hue
+My_pal_hue <- create_pal(image = image_path, n = 5, sort = "hue", title = "My Palette \n (sorted by hue)")
+
+# By saturation
+My_pal_saturation <- create_pal(image = image_path, n = 5, sort = "saturation", title = "My Palette \n (sorted by saturation)")
+
+# By value
+My_pal_value <- create_pal(image = image_path, n = 5, sort = "value", title = "My Palette \n (sorted by value)")
+```
+
+<br>
+
+Another novel feature of the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function is that you can specify `method = Gaussian_mix` to apply multivariate Gaussian mixture modeling
+instead of the default kmeans algorithm to extract the representative colors from the image: 
+
+```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
+# kmeans
+My_pal_kmeans <- create_pal(image = image_path, n = 5, method = "kmeans", sort = "value", title = "My Palette \n (kmeans)")
+
+# Gaussian mixture modeling
+My_pal_Gaussian_mix <- create_pal(image = image_path, n = 5, method = "Gaussian_mix", sort = "value", title = "My Palette \n (GMM)")
+```
+
+Not too much difference in this case.
+
+<br>
+
+Finally, if you do not want to see your palette, set `show.pal = FALSE`. This will return only the color code vector. 
+
+<br>
+
+Let's apply the palettes to the figure:
+```{r, tidy = FALSE }
+library(ggplot2)
+library(ggpubr)
+
+# Create the palettes
+My_pal1 <- create_pal(image = image_path, n = 10, sort = "value", colorblind = FALSE, show.pal = F)
+My_pal2 <- create_pal(image = image_path, n = 10, sort = "value", colorblind = TRUE, show.pal = F)
+
+# The golden spiral
+spiral_df <- data.frame(x = seq(0, 13, length.out = 5000)) %>%
+  mutate(y = exp(0.30635*x)) %>%
+  mutate(x = rev(x),
+         y = rev(y),
+         polar_x = y*cos(x),
+         polar_y = y*sin(x),
+         x_start = rep(0, 5000),
+         y_start = rep(0, 5000))
+
+# Plot the spirals (package logo)
+spiral_p1 <- ggplot(spiral_df) +
+  geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
+               color = rep(My_pal1, each = 500),
+               size = 1) +
+  geom_point(aes(x = polar_x, y = polar_y),
+             color = "black",
+             size = 0.1) +
+  coord_fixed(ratio = 1) +
+  theme_void()
+
+spiral_p2 <- ggplot(spiral_df) +
+  geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
+               color = rep(My_pal2, each = 500),
+               size = 1) +
+  geom_point(aes(x = polar_x, y = polar_y),
+             color = "black",
+             size = 0.1) +
+  coord_fixed(ratio = 1) +
+  theme_void()
+
+# Arrange the spirals
+ggarrange(spiral_p1, spiral_p2)
+# Dazzling colors
+spiral_p1_dazzle <- ggplot(spiral_df) +
+  geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
+               color = rep(My_pal1, 500),
+               size = 1) +
+  geom_point(aes(x = polar_x, y = polar_y),
+             color = "black",
+             size = 0.1) +
+  coord_fixed(ratio = 1) +
+  theme_void()
+
+spiral_p2_dazzle <- ggplot(spiral_df) +
+  geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
+               color = rep(My_pal2, 500),
+               size = 1) +
+  geom_point(aes(x = polar_x, y = polar_y),
+             color = "black",
+             size = 0.1) +
+  coord_fixed(ratio = 1) +
+  theme_void()
+
+# Arrange the spirals
+ggarrange(spiral_p1_dazzle, spiral_p2_dazzle)
+# Color gradients
+My_pal3 <- create_pal(image = image_path, n = 5000, sort = "value", colorblind = FALSE, show.pal = F) 
+# This might take a while to run
+
+spiral_p3 <- ggplot(spiral_df) +
+  geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
+               color = rep(My_pal3),
+               size = 1) +
+  geom_point(aes(x = polar_x, y = polar_y),
+             color = "black",
+             size = 0.1) +
+  coord_fixed(ratio = 1) +
+  theme_void()
+
+spiral_p3
+```
+
+<br>
+
+Interested? Grab your own image and try it out now!
+
+Have fun and enjoy!!!
+
+
+
+

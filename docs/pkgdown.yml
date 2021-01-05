@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   Quick_Demonstration: Quick_Demonstration.html
-last_built: 2021-01-05T07:25Z
+last_built: 2021-01-05T09:46Z
 urls:
   reference: https://genchanghsu.github.io/PalCreatoR//reference
   article: https://genchanghsu.github.io/PalCreatoR//articles

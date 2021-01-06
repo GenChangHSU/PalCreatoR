@@ -30,10 +30,10 @@ available. Inspired by these works, the PalCreatoR package aims to
 provide an easy-to-use tool that does the same job while keeping the
 arguments as simple as possible. It incorporates two features that have
 so far not yet been implemented in the current functions of its kind:
-(1) allowing users to get the colorblind-friendly colors converted from
-the original colors in the palette, and (2) using a multivariate
-Gaussian mixture modeling (GMM) approach, besides the most-used kmeans
-algorithm, to extract the representative colors from the image.
+(1) allowing user to get colorblind-friendly colors converted from the
+original colors in the palette; (2) using multivariate Gaussian mixture
+modeling (GMM), besides the most-used kmeans algorithm, to extract the
+representative colors from the image.
 
 ## Installation
 
@@ -46,10 +46,11 @@ devtools::install_github("GenChangHSU/PalCreatoR")
 
 ## Examples
 
-Here are some example palettes generated with the function
+Here are some example palettes created with the function
 [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html).
-For more details, see [Quick
-Demonstration](https://genchanghsu.github.io/PalCreatoR/articles/Quick_Demonstration.html).
+See [Quick
+Demonstration](https://genchanghsu.github.io/PalCreatoR/articles/Quick_Demonstration.html)
+for more details on its usage.
 
 <br>
 

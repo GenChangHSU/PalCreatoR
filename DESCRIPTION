@@ -5,7 +5,7 @@ Version: 0.2.0
 Authors@R: c(person("Gen-Chang", "Hsu", email = "ymstrknp@gmail.com",
                     role = c("aut", "cre"),
                     comment = c(ORCID = "0000-0002-6607-4382")),
-             person("Jia-Ang", "Ou", email = "willemou@gmail.com", 
+             person("William", "Ou", email = "willemou@gmail.com", 
                     role = c("aut")))      
 Description: A package that extracts colors from a user-given raster image and 
     returns a customized palette.

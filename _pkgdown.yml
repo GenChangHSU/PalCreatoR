@@ -17,13 +17,13 @@ development:
 authors:
   Gen-Chang Hsu:
     href: https://github.com/GenChangHSU
-  Jia-Ang Ou:
+  William Ou:
     href: https://github.com/jiaangou
 
 navbar:
   structure:
     left: [home, reference, articles, news]
-    right: [github, twitter]
+    right: [github, twitter1, twitter2]
   components:
     reference:
        text: Function
@@ -34,9 +34,12 @@ navbar:
     news:
        text: News
        href: news/index.html
-    twitter:
+    twitter1:
        icon: "fab fa-twitter fa-lg"
        href: https://twitter.com/GenChangHSU
+    twitter2:
+       icon: "fab fa-twitter fa-lg"
+       href: https://twitter.com/jiaangou
 
 reference:
   - title: "Function"

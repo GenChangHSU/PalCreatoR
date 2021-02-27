@@ -45,6 +45,11 @@ reference:
   - title: "Function"
     contents:
      - create_pal
+  - title: "Example Images"
+    contents:
+     - create_pal
+
+
 
 articles:
   - title: Quick Demonstration

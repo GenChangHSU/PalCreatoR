@@ -20,7 +20,10 @@ The PalCreatoR package is designed to create an R palette using colors from an i
 
 
 ## Background
-The idea of creating color palettes from an image is not something new in the R community. Several packages (e.g., [imgpalr](https://cran.rstudio.com/web/packages/imgpalr/index.html), [paletteR](https://github.com/AndreaCirilloAC/paletter), [PNWColors](https://github.com/jakelawlor/PNWColors), [RImagePalette](https://cran.r-project.org/web/packages/RImagePalette/index.html)) and functions (e.g., [palettebuildr](https://gist.github.com/jonesor/1818babb03783dc41a1a)) have been developed for this purpose, with a wide range of arguments available. Inspired by these works, the PalCreatoR package aims to provide an easy-to-use tool that does the same job while keeping the arguments as simple as possible. It incorporates two features that have so far not yet been implemented in the current functions of its kind:  (1) Allowing user to get colorblind-friendly colors converted from the original colors in the palette.
+The idea of creating color palettes from an image is not something new in the R community. Several packages (e.g., [imgpalr](https://cran.rstudio.com/web/packages/imgpalr/index.html), [paletteR](https://github.com/AndreaCirilloAC/paletter), [PNWColors](https://github.com/jakelawlor/PNWColors), [RImagePalette](https://cran.r-project.org/web/packages/RImagePalette/index.html)) and functions (e.g., [palettebuildr](https://gist.github.com/jonesor/1818babb03783dc41a1a)) have been developed for this purpose, with a wide range of arguments available. Inspired by these works, the PalCreatoR package aims to provide an easy-to-use tool that does the same job while keeping the arguments as simple as possible. It incorporates two features that have so far not yet been implemented in the current functions of its kind:
+</p><p>
+(1) Allowing user to get colorblind-friendly colors converted from the original colors in the palette.
+</p><p>
 (2) Using multivariate Gaussian mixture modeling (GMM), besides the most-used kmeans algorithm, to extract the representative colors from the image.
 
 

@@ -30,10 +30,21 @@ available. Inspired by these works, the PalCreatoR package aims to
 provide an easy-to-use tool that does the same job while keeping the
 arguments as simple as possible. It incorporates two features that have
 so far not yet been implemented in the current functions of its kind:
-(1) allowing user to get colorblind-friendly colors converted from the
-original colors in the palette; (2) using multivariate Gaussian mixture
-modeling (GMM), besides the most-used kmeans algorithm, to extract the
-representative colors from the image.
+
+</p>
+
+<p>
+
+1)  Allowing user to get colorblind-friendly colors converted from the
+    original colors in the palette.
+
+</p>
+
+<p>
+
+2)  Using multivariate Gaussian mixture modeling (GMM), besides the
+    most-used kmeans algorithm, to extract the representative colors
+    from the image.
 
 ## Installation
 
@@ -71,5 +82,5 @@ for more details on its usage.
 
 ## Contact
 
-Like it? Feel free to reach us at <genchanghsu@gmail.com> and
+Like it? Feel free to reach us at <ymstrknp@gmail.com> and
 <willemou@gmail.com>. Any suggestions or cool ideas are welcome\!

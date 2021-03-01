@@ -94,6 +94,6 @@ My_pal <- create_pal(image = image_path,
 <br>
 
 ## Contact 
-Like it? Feel free to reach us at <ymstrknp@gmail.com> and <willemou@gmail.com>. Any suggestions or cool ideas are welcome! 
+Like it? Feel free to reach us at <genchanghsu@gmail.com> and <willemou@gmail.com>. Any suggestions or cool ideas are welcome! 
 
 

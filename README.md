@@ -82,5 +82,5 @@ for more details on its usage.
 
 ## Contact
 
-Like it? Feel free to reach us at <ymstrknp@gmail.com> and
+Like it? Feel free to reach us at <genchanghsu@gmail.com> and
 <willemou@gmail.com>. Any suggestions or cool ideas are welcome\!

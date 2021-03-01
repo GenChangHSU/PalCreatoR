@@ -46,8 +46,8 @@ reference:
     contents:
      - create_pal
   - title: "Example Images"
-
-
+    contents:
+     - example_images
 
 articles:
   - title: Quick Demonstration

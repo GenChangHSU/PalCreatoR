@@ -1,3 +1,7 @@
+# PalCreatoR 0.2.1 (2021-03-01)
+
+* Added "Example Images" section to the [Function](https://genchanghsu.github.io/PalCreatoR/reference/index.html) page
+
 # PalCreatoR 0.2.0 (2021-01-05)
 
 * Completed the [Quick Demonstration](https://genchanghsu.github.io/PalCreatoR/articles/Quick_Demonstration.html) of the package

@@ -26,7 +26,7 @@ navbar:
     right: [github, twitter1, twitter2]
   components:
     reference:
-       text: Function
+       text: Functions
        href: reference/index.html
     articles:
        text: Quick Demonstration
@@ -42,9 +42,10 @@ navbar:
        href: https://twitter.com/jiaangou
 
 reference:
-  - title: "Function"
+  - title: "Functions"
     contents:
      - create_pal
+     - modify_pal
   - title: "Example Images"
     contents:
      - example_images

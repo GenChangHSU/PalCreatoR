@@ -255,7 +255,7 @@ create_pal <- function(image,
       data.frame(Hex_code = .) %>%
       dplyr::mutate(
         x = c(rep(1:q, each = 10), rep(q + 1, m)),
-        y = c(rep(10:1, q), 10:(m + 1))
+        y = c(rep(10:1, q), 10:(10 - m + 1))
       )
   }
 

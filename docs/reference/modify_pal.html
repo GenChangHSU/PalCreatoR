@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Example images included in this package — example_images • PalCreatoR</title>
+<title>Modify alpha transparency of the colors in the palette — modify_pal • PalCreatoR</title>
 
 
 <!-- jquery -->
@@ -47,10 +47,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Example images included in this package — example_images" />
-<meta property="og:description" content="Three example images (Mountain.JPG, Cicada.JPG, Alpine Flower.JPG)
-     are available in this package (photo credit: Gen-Chang Hsu).
-     See 'Examples' for how to load the images." />
+<meta property="og:title" content="Modify alpha transparency of the colors in the palette — modify_pal" />
+<meta property="og:description" content="modify_pal modifies alpha transparency of the colors in the palette." />
 
 
 
@@ -142,42 +140,73 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Example images included in this package</h1>
-    <small class="dont-index">Source: <a href='https://github.com/GenChangHSU/PalCreatoR/blob/master/R/example_images.R'><code>R/example_images.R</code></a></small>
-    <div class="hidden name"><code>example_images.Rd</code></div>
+    <h1>Modify alpha transparency of the colors in the palette</h1>
+    <small class="dont-index">Source: <a href='https://github.com/GenChangHSU/PalCreatoR/blob/master/R/modify_pal.R'><code>R/modify_pal.R</code></a></small>
+    <div class="hidden name"><code>modify_pal.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Three example images (Mountain.JPG, Cicada.JPG, Alpine Flower.JPG)
-     are available in this package (photo credit: Gen-Chang Hsu).
-     See 'Examples' for how to load the images.</p>
+    <p><code>modify_pal</code> modifies alpha transparency of the colors in the palette.</p>
     </div>
 
-    <pre class="usage"><span class='va'>example_images</span></pre>
+    <pre class="usage"><span class='fu'>modify_pal</span><span class='op'>(</span><span class='va'>pal</span>, <span class='va'>alpha</span>, show.pal <span class='op'>=</span> <span class='cn'>TRUE</span>, title <span class='op'>=</span> <span class='st'>""</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>alpha</th>
+      <td><p>a single number or a vector of numbers between 0 and 1. These values define the degree
+of transparency of the colors in the palette. If <code>alpha</code> is a single number, the transparency of
+all the colors in the palette will be set to that value; if <code>alpha</code> is a vector of numbers, the
+transparency of the colors in the palette will be set to the corresponding alpha values.
+Also note that if the vector lengths of <code>pal</code> and <code>alpha</code> differ, extra elements in the longer
+vector will be omitted to match the length of the shorter one. See 'Details' section for more information
+on the concept of alpha transparency.</p></td>
+    </tr>
+    <tr>
+      <th>show.pal</th>
+      <td><p>logical. Whether to display the modified palette or not. Default to <code>TRUE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>title</th>
+      <td><p>a character string giving the title of the displayed palette.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments passed to <code><a href='https://ggplot2.tidyverse.org/reference/theme.html'>ggplot2::theme</a></code>.</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>.JPG file.</p>
+    <p>A vector of hexadecimal color codes with two additional digits defining the degree of transparency.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>An alpha value defines the "transparency", or "opacity" of the color. A value of 0 means completely
+    transparent (i.e., the background will completely “show through”); a value of 1 means completely opaque
+    (i.e., none of the background will “show through”). In short, the lower the alpha value is, the lower "amount"
+    of the color will be.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/GenChangHSU/PalCreatoR'>PalCreatoR</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://docs.ropensci.org/magick/'>magick</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Linking to ImageMagick 6.9.11.34</span>
-#&gt; <span class='message'>Enabled features: cairo, freetype, fftw, ghostscript, lcms, pango, rsvg, webp</span>
-#&gt; <span class='message'>Disabled features: fontconfig, x11</span></div><div class='input'>
-<span class='va'>image_path_Mountain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"Mountain.JPG"</span>, package <span class='op'>=</span> <span class='st'>"PalCreatoR"</span><span class='op'>)</span>
-<span class='va'>Mountain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='va'>image_path_Mountain</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Mountain</span><span class='op'>)</span>
-</div><div class='img'><img src='example_images-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='va'>image_path_Cicada</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"Cicada.JPG"</span>, package <span class='op'>=</span> <span class='st'>"PalCreatoR"</span><span class='op'>)</span>
-<span class='va'>Cicada</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='va'>image_path_Cicada</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Cicada</span><span class='op'>)</span>
-</div><div class='img'><img src='example_images-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='va'>image_path_Alpine_flower</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"Alpine Flower.JPG"</span>, package <span class='op'>=</span> <span class='st'>"PalCreatoR"</span><span class='op'>)</span>
-<span class='va'>Alpine_flower</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='va'>image_path_Alpine_flower</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Alpine_flower</span><span class='op'>)</span>
-</div><div class='img'><img src='example_images-3.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/GenChangHSU/PalCreatoR'>PalCreatoR</a></span><span class='op'>)</span>
+<span class='va'>image_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"Mountain.JPG"</span>, package <span class='op'>=</span> <span class='st'>"PalCreatoR"</span><span class='op'>)</span>
+
+<span class='va'>My_pal</span> <span class='op'>&lt;-</span> <span class='fu'><a href='create_pal.html'>create_pal</a></span><span class='op'>(</span>image <span class='op'>=</span> <span class='va'>image_path</span>,
+                     n <span class='op'>=</span> <span class='fl'>5</span>,
+                     resize <span class='op'>=</span> <span class='fl'>0.1</span>,
+                     method <span class='op'>=</span> <span class='st'>"kmeans"</span>,
+                     colorblind <span class='op'>=</span> <span class='cn'>FALSE</span>,
+                     sort <span class='op'>=</span> <span class='st'>"value"</span>,
+                     show.pal <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                     title <span class='op'>=</span> <span class='st'>"My Palette"</span><span class='op'>)</span>
+
+<span class='va'>My_new_pal</span> <span class='op'>&lt;-</span> <span class='fu'>modify_pal</span><span class='op'>(</span>pal <span class='op'>=</span> <span class='va'>My_pal</span>,
+                         alpha <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.2</span>, <span class='fl'>0.4</span>, <span class='fl'>0.6</span>, <span class='fl'>0.8</span>, <span class='fl'>1.0</span><span class='op'>)</span>,
+                         show.pal <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                         title <span class='op'>=</span> <span class='st'>"My New Palette"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>My_new_pal</span><span class='op'>)</span><span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

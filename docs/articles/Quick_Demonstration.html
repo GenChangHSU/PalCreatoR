@@ -106,7 +106,7 @@
     
 <p>This vignette shows you some examples of using the package’s main function, <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html"><code>create_pal</code></a>. You will learn how to make good use of its functionality to create your own awesome palette.</p>
 <p>We will play around with the <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html"><code>create_pal</code></a> function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (<em>Sedum morrisonense</em> Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage in addition to photosynthesis. During summertime, blossoms of bright yellow flowers will burst into bloom.</p>
-<p><img src="https://github.com/GenChangHSU/PalCreatoR/blob/master/inst/Alpine%20Flower.JPG" align="center" height="400"></p>
+<p><img src="inst/Alpine%20Flower.JPG" align="center" height="400"></p>
 <p><br></p>
 <div id="part-1--create-the-palette" class="section level1">
 <h1 class="hasAnchor">
@@ -215,16 +215,15 @@ A single color + multiple alpha values: If you have a single color but pass mult
 <li>
 Multiple colors + a single alpha value: If you have multiple colors but pass only a single alpha value to the function, then all the colors will be adjusted by the same degree of transparency. This is useful for toning down the palette colors in a uniform manner.
 </li>
+</ol>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">My_pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, method <span class="op">=</span> <span class="st">"kmeans"</span>, 
     sort <span class="op">=</span> <span class="st">"value"</span>, title <span class="op">=</span> <span class="st">"My Palette"</span><span class="op">)</span>
 
 <span class="va">My_trans_pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/modify_pal.html">modify_pal</a></span><span class="op">(</span>pal <span class="op">=</span> <span class="va">My_pal</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, title <span class="op">=</span> <span class="st">"My Transparent Palette"</span><span class="op">)</span></code></pre></div>
-<img src="Quick_Demonstration_files/figure-html/unnamed-chunk-9-1.png" width="50%"><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-9-2.png" width="50%">
-</ol>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-9-1.png" width="50%"><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-9-2.png" width="50%"></p>
 <p>Of course, the color palette you pass to the <code>pal</code> argument does not necessarily have to be generated from the <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html"><code>create_pal</code></a> function. You can specify any color you want as long as they are in hexadecimal color format!</p>
-<p><br></p>
 </div>
 <div id="part-3--use-the-palette" class="section level1">
 <h1 class="hasAnchor">

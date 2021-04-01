@@ -23,7 +23,7 @@ This vignette shows you some examples of using the package's main function, [`cr
 
 We will play around with the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (*Sedum morrisonense* Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage in addition to photosynthesis. During summertime, blossoms of bright yellow flowers will burst into bloom.
 
-<img src = "https://github.com/GenChangHSU/PalCreatoR/blob/master/inst/Alpine%20Flower.JPG" align = "center" height = "400" />
+<img src = "inst/Alpine Flower.JPG" align = "center" height = "400" />
 
 <br>
 
@@ -122,17 +122,15 @@ print(My_col_gradient)
 ```
 
   <li>Multiple colors + a single alpha value: If you have multiple colors but pass only a single alpha value to the function, then all the colors will be adjusted by the same degree of transparency. This is useful for toning down the palette colors in a uniform manner.</li>
+</ol>
 ```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
 
 My_pal <- create_pal(image = image_path, n = 5, method = "kmeans", sort = "value", title = "My Palette")
 
 My_trans_pal <- modify_pal(pal = My_pal, alpha = 0.5, title = "My Transparent Palette")
 ```  
-</ol>
-  
-Of course, the color palette you pass to the `pal` argument does not necessarily have to be generated from the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function. You can specify any color you want as long as they are in hexadecimal color format!
 
-<br>
+Of course, the color palette you pass to the `pal` argument does not necessarily have to be generated from the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function. You can specify any color you want as long as they are in hexadecimal color format!
 
 # Part 3. Use the Palette
 Finally, let's use the palettes in the real figures:

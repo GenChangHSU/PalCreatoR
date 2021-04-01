@@ -128,7 +128,7 @@ My_pal <- create_pal(image = image_path, n = 5, method = "kmeans", sort = "value
 
 My_trans_pal <- modify_pal(pal = My_pal, alpha = 0.5, title = "My Transparent Palette")
 ```  
-<br>
+</ol>
   
 Of course, the color palette you pass to the `pal` argument does not necessarily have to be generated from the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function. You can specify any color you want as long as they are in hexadecimal color format!
 

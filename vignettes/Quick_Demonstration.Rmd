@@ -23,7 +23,7 @@ This vignette shows you some examples of using the package's main function, [`cr
 
 We will play around with the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (*Sedum morrisonense* Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage in addition to photosynthesis. During summertime, blossoms of bright yellow flowers will burst into bloom.
 
-<img src = "./inst/Alpine Flower.JPG" align = "center" height = "400" />
+<img src = "https://github.com/GenChangHSU/PalCreatoR/blob/master/inst/Alpine%20Flower.JPG" align = "center" height = "400" />
 
 <br>
 
@@ -101,46 +101,36 @@ Not much difference in this case.
 
 Finally, if you do not want to see your palette, set `show.pal = FALSE`. This will return only the color code vector. 
 
-
-
-
-
-
-
-
-
 # Part 2. Modify the Palette
-You can modify the alpha transparency of the colors in the palette using the helper function [`modify_pal`](https://genchanghsu.github.io/PalCreatoR/reference/modify_pal.html). Simply pass the palette and a vector of alpha values into the function, and you will get the modified colors!
+You can modify the alpha transparency^[An alpha value defines the "transparency", or "opacity" of the color. A value of 0 means completely transparent (i.e., the background will completely “show through”); a value of 1 means completely opaque (i.e., none of the background will “show through”). In short, the lower the alpha value is, the lower "amount" of the color will be.] of the colors in the palette using the helper function [`modify_pal`](https://genchanghsu.github.io/PalCreatoR/reference/modify_pal.html). Simply pass the palette and a vector of alpha values into the function, and you will get the modified colors!
 
 ```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
-# kmeans
-My_pal_kmeans <- create_pal(image = image_path, n = 5, method = "kmeans", sort = "value", title = "My Palette \n (kmeans)")
+# Original palette
+My_pal <- create_pal(image = image_path, n = 5, method = "kmeans", sort = "value", title = "My Palette")
 
-# Gaussian mixture modeling
-My_pal_Gaussian_mix <- create_pal(image = image_path, n = 5, method = "Gaussian_mix", sort = "value", title = "My Palette \n (GMM)")
+# Modified palette
+My_new_pal <- modify_pal(pal = My_pal, alpha = c(0.1, 0.3, 0.5, 0.7, 0.9), title = "My New Palette")
 ```
 
-In general, the number of palette and the number of alpha values should be the same. Any extra elements in the longer vector will be omitted to match the elements in the shorter one. However, there are two exceptions: <ol>
-  <li>A single color with multiple alpha values: If you have a single color with multiple alpha values, then you will get a sequence of that color with different transparencies. This is useful for generating a color gradient.</li>
+In general, the number of colors in the palette and the number of alpha values should be the same. Any extra elements in the longer vector will be omitted to match the elements in the shorter one. However, there are two exceptions: 
+<ol>
+  <li>A single color + multiple alpha values: If you have a single color but pass multiple alpha values to the function, then you will get a sequence of that color with different transparencies. This is useful for generating a color gradient.</li>
 ```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
-My_pal_10 <- create_pal(image = image_path, n = 10, title = "My Palette (n = 10)")
+My_col_gradient <- modify_pal(pal = My_pal[1], alpha = c(0.1, 0.3, 0.5, 0.7, 0.9), title = "My Color Gradient")
 
-print(My_pal_10)
+print(My_col_gradient)
 ```
 
-  <li>Multiple colors with a single alpha values: If you have multiple colors with a single alpha value, then you will get the same set of colors adjusted by the same degree of transparency. This is useful for toning down the colors in a uniform manner.</li>
+  <li>Multiple colors + a single alpha value: If you have multiple colors but pass only a single alpha value to the function, then all the colors will be adjusted by the same degree of transparency. This is useful for toning down the palette colors in a uniform manner.</li>
 ```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
-My_pal_10 <- create_pal(image = image_path, n = 10, title = "My Palette (n = 10)")
 
-print(My_pal_10)
-```
+My_pal <- create_pal(image = image_path, n = 5, method = "kmeans", sort = "value", title = "My Palette")
 
- 
-
-
-
-
-
+My_trans_pal <- modify_pal(pal = My_pal, alpha = 0.5, title = "My Transparent Palette")
+```  
+<br>
+  
+Of course, the color palette you pass to the `pal` argument does not necessarily have to be generated from the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function. You can specify any color you want as long as they are in hexadecimal color format!
 
 <br>
 
@@ -228,11 +218,11 @@ spiral_p3
 # Color gradients with different alpha transparencies
 My_pal4 <- create_pal(image = image_path, n = 5, sort = "value", colorblind = FALSE, show.pal = F) 
 
-My_new_pal <- modify_pal(pal = My_pal4[1], alpha = seq(0.1, 1.0, 0.1), show.pal = T)
+My_new_pal <- modify_pal(pal = My_pal4[1], alpha = seq(0.1, 1.0, 0.1), show.pal = F)
 
 spiral_new_pal <- ggplot(spiral_df) +
   geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
-               color = rep(My_new_pal, each = 1000),
+               color = rep(My_new_pal, each = 500),
                size = 1) +
   geom_point(aes(x = polar_x, y = polar_y),
              color = "black",

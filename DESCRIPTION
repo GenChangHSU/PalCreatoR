@@ -2,7 +2,7 @@ Package: PalCreatoR
 Type: Package
 Title: Create your own R palette using colors extracted from your favorite image 
 Date: 2021-01-01
-Version: 0.2.1
+Version: 1.0.0
 Authors@R: c(person("Gen-Chang", "Hsu", email = "genchanghsu@gmail.com",
                     role = c("aut", "cre"),
                     comment = c(ORCID = "0000-0002-6607-4382")),

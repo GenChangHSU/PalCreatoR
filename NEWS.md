@@ -1,3 +1,9 @@
+# PalCreatoR 1.0.0 (2021-04-01)
+
+* Created a new function [modify_pal](https://genchanghsu.github.io/PalCreatoR/reference/modify_pal.html) for the package
+
+* Updated the [Quick Demonstration](https://genchanghsu.github.io/PalCreatoR/articles/Quick_Demonstration.html) and added some example usages of [modify_pal](https://genchanghsu.github.io/PalCreatoR/reference/modify_pal.html) 
+
 # PalCreatoR 0.2.1 (2021-03-01)
 
 * Added "Example Images" section to the [Functions](https://genchanghsu.github.io/PalCreatoR/reference/index.html) page

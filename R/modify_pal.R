@@ -50,18 +50,19 @@ modify_pal <- function(pal,
 
   # 1. pal argument
   if (grepl(pattern = "^#[0-9A-Fa-f]{6}$", x = pal) == F) {
-    stop('One or more incorrect hex color codes passed to the "pal" argument!')
+    stop('One or more incorrect hex color codes passed in the "pal" argument!')
   }
 
   # 2. alpha argument
   if (any(!alpha <= 1) || any(!alpha >= 0)) {
-    stop('One or more incorrect values passed to the "alpha" argument!')
+    stop('One or more incorrect values passed in the "alpha" argument!')
   }
 
   # 3. show.pal argument
   if (is.logical(show.pal) == F) {
     stop('Argument passed to "show.pal" is not logical!')
   }
+
 
   # Function body -----------------------------------------------------------
 
@@ -76,7 +77,7 @@ modify_pal <- function(pal,
 
   df <- data.frame(hex = pal, alpha = alpha)
 
-  # 2. Get the hex codes with additional two alpha digits
+  # 2. Get the hex codes with the additional two alpha digits
   hex_codes <- purrr::map2(
     .x = df$hex,
     .y = df$alpha,

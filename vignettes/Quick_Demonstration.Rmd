@@ -23,7 +23,7 @@ This vignette shows you some examples of using the package's main function, [`cr
 
 We will play around with the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (*Sedum morrisonense* Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage in addition to photosynthesis. During summertime, blossoms of bright yellow flowers will burst into bloom.
 
-<img src = "C:/Users/Win7/Desktop/PalCreatoR/inst/Alpine Flower.JPG" align = "center" height = "400" />
+<img src = "./PalCreatoR/inst/Alpine Flower.JPG" align = "center" height = "400" />
 
 <br>
 

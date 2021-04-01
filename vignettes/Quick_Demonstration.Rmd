@@ -101,7 +101,43 @@ Not much difference in this case.
 
 Finally, if you do not want to see your palette, set `show.pal = FALSE`. This will return only the color code vector. 
 
+
+
+
+
+
+
+
+
 # Part 2. Modify the Palette
+You can modify the alpha transparency of the colors in the palette using the helper function [`modify_pal`](https://genchanghsu.github.io/PalCreatoR/reference/modify_pal.html). Simply pass the palette and a vector of alpha values into the function, and you will get the modified colors!
+
+```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
+# kmeans
+My_pal_kmeans <- create_pal(image = image_path, n = 5, method = "kmeans", sort = "value", title = "My Palette \n (kmeans)")
+
+# Gaussian mixture modeling
+My_pal_Gaussian_mix <- create_pal(image = image_path, n = 5, method = "Gaussian_mix", sort = "value", title = "My Palette \n (GMM)")
+```
+
+In general, the number of palette and the number of alpha values should be the same. Any extra elements in the longer vector will be omitted to match the elements in the shorter one. However, there are two exceptions: <ol>
+  <li>A single color with multiple alpha values: If you have a single color with multiple alpha values, then you will get a sequence of that color with different transparencies. This is useful for generating a color gradient.</li>
+```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
+My_pal_10 <- create_pal(image = image_path, n = 10, title = "My Palette (n = 10)")
+
+print(My_pal_10)
+```
+
+  <li>Multiple colors with a single alpha values: If you have multiple colors with a single alpha value, then you will get the same set of colors adjusted by the same degree of transparency. This is useful for toning down the colors in a uniform manner.</li>
+```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
+My_pal_10 <- create_pal(image = image_path, n = 10, title = "My Palette (n = 10)")
+
+print(My_pal_10)
+```
+
+ 
+
+
 
 
 

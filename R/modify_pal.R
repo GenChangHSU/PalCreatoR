@@ -73,13 +73,19 @@ modify_pal <- function(pal,
   # 1. Check the lengths of the pal and alpha vectors
   if (length(pal) != length(alpha) &&
       length(pal) != 1 && length(alpha) != 1) {
+
+    l_pal <- length(pal)
+    l_alpha <- length(alpha)
+    n_shorter <- min(l_pal, l_alpha)
+    df <- data.frame(hex = pal[1:n_shorter], alpha = alpha[1:n_shorter])
+
     warning(
       'The lengths of "pal"" and "alpha" differ; extra elements in the longer vector
   are omitted to match the length of the shorter one!'
     )
+  } else {
+    df <- data.frame(hex = pal, alpha = alpha)
   }
-
-  df <- data.frame(hex = pal, alpha = alpha)
 
   # 2. Get the hex codes with the additional two alpha digits
   hex_codes <- purrr::map2(

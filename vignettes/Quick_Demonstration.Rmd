@@ -23,10 +23,11 @@ This vignette shows you some examples of using the package's main function, [`cr
 
 We will play around with the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (*Sedum morrisonense* Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage in addition to photosynthesis. During summertime, blossoms of bright yellow flowers will burst into bloom.
 
-<img src = "./PalCreatoR/inst/Alpine Flower.JPG" align = "center" height = "400" />
+<img src = "./inst/Alpine Flower.JPG" align = "center" height = "400" />
 
 <br>
 
+# Part 1. Create the Palette
 Now let's start with a simple example:
 ```{r, fig.show = "hold", out.width = "50%", fig.width = 3.5, fig.height = 4}
 # Get the path of the image
@@ -100,9 +101,15 @@ Not much difference in this case.
 
 Finally, if you do not want to see your palette, set `show.pal = FALSE`. This will return only the color code vector. 
 
+# Part 2. Modify the Palette
+
+
+
+
 <br>
 
-Let's use the palettes in the figure:
+# Part 3. Use the Palette
+Finally, let's use the palettes in the real figures:
 ```{r, tidy = FALSE}
 library(ggplot2)
 library(ggpubr)
@@ -167,7 +174,7 @@ spiral_p2_dazzle <- ggplot(spiral_df) +
 
 # Arrange the spirals
 ggarrange(spiral_p1_dazzle, spiral_p2_dazzle)
-# Color gradients
+# Continuous color spectrum
 My_pal3 <- create_pal(image = image_path, n = 5000, sort = "value", colorblind = FALSE, show.pal = F) 
 # This might take a while to run
 
@@ -182,6 +189,23 @@ spiral_p3 <- ggplot(spiral_df) +
   theme_void()
 
 spiral_p3
+# Color gradients with different alpha transparencies
+My_pal4 <- create_pal(image = image_path, n = 5, sort = "value", colorblind = FALSE, show.pal = F) 
+
+My_new_pal <- modify_pal(pal = My_pal4[1], alpha = seq(0.1, 1.0, 0.1), show.pal = T)
+
+spiral_new_pal <- ggplot(spiral_df) +
+  geom_segment(aes(x = x_start, y = y_start, xend = polar_x, yend = polar_y),
+               color = rep(My_new_pal, each = 1000),
+               size = 1) +
+  geom_point(aes(x = polar_x, y = polar_y),
+             color = "black",
+             size = 0.1) +
+  coord_fixed(ratio = 1) +
+  theme_void()
+
+spiral_new_pal
+
 ```
 
 <br>

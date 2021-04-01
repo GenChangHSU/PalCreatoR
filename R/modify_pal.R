@@ -49,7 +49,11 @@ modify_pal <- function(pal,
   # Error messages -------------------------------------------------------------------------
 
   # 1. pal argument
-  if (grepl(pattern = "^#[0-9A-Fa-f]{6}$", x = pal) == F) {
+  color_check <- sapply(pal, function(X){
+    grepl(pattern = "^#[0-9A-Fa-f]{6}$", x = X)
+  })
+
+  if (any(color_check == F)) {
     stop('One or more incorrect hex color codes passed in the "pal" argument!')
   }
 

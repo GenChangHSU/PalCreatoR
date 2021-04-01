@@ -216,11 +216,12 @@ A single color + multiple alpha values: If you have a single color but pass mult
 Multiple colors + a single alpha value: If you have multiple colors but pass only a single alpha value to the function, then all the colors will be adjusted by the same degree of transparency. This is useful for toning down the palette colors in a uniform manner.
 </li>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">My_trans_pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/modify_pal.html">modify_pal</a></span><span class="op">(</span>pal <span class="op">=</span> <span class="va">My_pal</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, title <span class="op">=</span> <span class="st">"My Transparent Palette"</span><span class="op">)</span>
+<code class="sourceCode R">
+<span class="va">My_pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/create_pal.html">create_pal</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">image_path</span>, n <span class="op">=</span> <span class="fl">5</span>, method <span class="op">=</span> <span class="st">"kmeans"</span>, 
+    sort <span class="op">=</span> <span class="st">"value"</span>, title <span class="op">=</span> <span class="st">"My Palette"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">My_trans_pal</span><span class="op">)</span>
-<span class="co">#&gt; [1] "#EDCB377F" "#BAA5867F" "#8B7E617F" "#4E55427F" "#2122187F"</span></code></pre></div>
-<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-9-1.png" width="50%"></p>
+<span class="va">My_trans_pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/modify_pal.html">modify_pal</a></span><span class="op">(</span>pal <span class="op">=</span> <span class="va">My_pal</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>, title <span class="op">=</span> <span class="st">"My Transparent Palette"</span><span class="op">)</span></code></pre></div>
+<p><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-9-1.png" width="50%"><img src="Quick_Demonstration_files/figure-html/unnamed-chunk-9-2.png" width="50%"><br></p>
 <p>Of course, the color palette you pass to the <code>pal</code> argument does not necessarily have to be generated from the <a href="https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html"><code>create_pal</code></a> function. You can specify any color you want as long as they are in hexadecimal color format!</p>
 <p><br></p>
 </ol>

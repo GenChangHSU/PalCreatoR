@@ -23,7 +23,7 @@ This vignette shows you some examples of using the package's main function, [`cr
 
 We will play around with the [`create_pal`](https://genchanghsu.github.io/PalCreatoR/reference/create_pal.html) function using the image below (photo credit: Gen-Chang Hsu). This stonecrop species (*Sedum morrisonense* Hayata) is endemic to Taiwan and commonly seen at mid- and high-altitudes. It thrives in the rock cracks and crevices, growing low and spreading out to avoid strong wind. It is also characterized by its densely-clumped, fingernail-like succulent leaves, which are used for water storage in addition to photosynthesis. During summertime, blossoms of bright yellow flowers will burst into bloom.
 
-<img src = "inst/Alpine Flower.JPG" align = "center" height = "400" />
+<img src = "../inst/Alpine Flower.JPG" align = "center" height = "400" />
 
 <br>
 
@@ -97,9 +97,9 @@ My_pal_Gaussian_mix <- create_pal(image = image_path, n = 5, method = "Gaussian_
 
 Not much difference in this case.
 
-<br>
+By the way, if you do not want to see your palette, set `show.pal = FALSE`. This will return only the color code vector. 
 
-Finally, if you do not want to see your palette, set `show.pal = FALSE`. This will return only the color code vector. 
+<br>
 
 # Part 2. Modify the Palette
 You can modify the alpha transparency^[An alpha value defines the "transparency", or "opacity" of the color. A value of 0 means completely transparent (i.e., the background will completely “show through”); a value of 1 means completely opaque (i.e., none of the background will “show through”). In short, the lower the alpha value is, the lower "amount" of the color will be.] of the colors in the palette using the helper function [`modify_pal`](https://genchanghsu.github.io/PalCreatoR/reference/modify_pal.html). Simply pass the palette and a vector of alpha values into the function, and you will get the modified colors!
